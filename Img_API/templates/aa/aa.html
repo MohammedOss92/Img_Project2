@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة صورة</title>
+</head>
+
+<body>
+    <h1>إضافة صورة</h1>
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- اختيار الفئة -->
+        <label for="img_type_id">اختر الفئة:</label>
+        <select name="img_type_id" id="img_type_id">
+            {% for img_type in img_types %}
+            <option value="{{ img_type.id }}">{{ img_type.Category }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <!-- رفع ملف الصورة -->
+        <label for="image_file">رفع الصورة:</label>
+        <input type="file" name="image_file" id="image_file" required>
+        <br>
+
+        <!-- إدخال قيمة new_img -->
+        <label for="new_img">قيمة new_img:</label>
+        <input type="text" name="new_img" id="new_img" value="1">
+        <br>
+
+        <!-- زر إرسال -->
+        <input type="submit" value="إضافة الصورة">
+    </form>
+</body>
+
+</html>

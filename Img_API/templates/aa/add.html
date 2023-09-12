@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>إنشاء فئة جديدة</title>
+    <style>
+        body {
+            margin: 20px;
+            /* إعداد هامش خارجي للصفحة */
+            padding: 10px;
+            /* إعداد حشو داخلي للصفحة */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            /* هامش أسفل للعنوان */
+        }
+
+        label {
+            display: block;
+            /* عرض العناصر label كمربعات منفصلة */
+            margin-bottom: 10px;
+            /* هامش أسفل للعناصر label */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            /* جعل عرض الحقل ملء العرض المتاح */
+            padding: 5px;
+            /* إعداد حشو داخلي للحقل input */
+            margin-bottom: 10px;
+            /* هامش أسفل للحقل input */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            /* لون خلفية زر الإرسال */
+            color: #fff;
+            /* لون نص زر الإرسال */
+            padding: 10px 20px;
+            /* إعداد حشو داخلي لزر الإرسال */
+            border: none;
+            /* إزالة الحدود */
+            cursor: pointer;
+            /* تغيير المؤشر إلى يد عند التحويل */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            /* تغيير لون الخلفية عند التحويل */
+        }
+
+        p {
+            margin-top: 10px;
+            /* هامش أعلى للفقرة */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>إنشاء فئة جديدة</h1>
+    <form method="post" action="{% url 'create_img_type' %}">
+        {% csrf_token %}
+        <label for="img_type_name">اسم الفئة:</label>
+        <input type="text" id="img_type_name" name="img_type_name" required>
+        <br>
+        <label for="new_image">قيمة new_image:</label>
+        <input type="text" id="new_image" name="new_image" value="1" required>
+        <br>
+        <input type="submit" value="إنشاء فئة جديدة">
+    </form>
+
+    {% if message %}
+    <p>{{ message }}</p> <!-- عرض الرسالة إذا كانت موجودة -->
+    {% endif %}
+</body>
+
+</html>

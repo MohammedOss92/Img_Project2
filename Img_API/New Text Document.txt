@@ -1,0 +1,104 @@
+# def add_img(request):
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             image = form.save(commit=False)
+#             # �� ������ ���� ������ ������ ����� �� ��� "image_url"
+#             image.image_url = request.build_absolute_uri(image.image.url)
+#             image.save()
+#             return redirect('home')  # �� ������ �������� ��� ���� ����� ����� ��� ����� �����
+
+#     else:
+#         form = ImageForm()
+
+#     return render(request, 'aa/a.html', {'form': form})
+
+class Image(models.Model):
+    image = models.ImageField(upload_to='images/')
+    site_name = models.CharField(max_length=255, null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['image', 'site_name', 'image_url']
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload Image</button>
+    </form>
+</body>
+
+</html>
+
+# def add_img(request):
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             image = form.save(commit=False)
+#             # قم بإعداد مسار الصورة الكامل وحفظه في حقل "pic_url"
+#             image.pic_url = request.build_absolute_uri(image.pic.url)
+
+#             # احصل على نوع الفئة المختار وقم بتعيينه لحقل "img_type_name"
+#             img_type_name = request.POST.get('img_type_name')
+            
+#             # قم بطباعة القيمة للتحقق منها
+#             print("img_type_name:", img_type_name)
+            
+#             try:
+#                 img_type = Img_Type.objects.get(Category=img_type_name)
+#                 image.img_type_name = img_type
+
+#                 # احصل على قيمة new_img من النموذج واستخدمها
+#                 new_img_value = form.cleaned_data['new_img']
+#                 image.new_img = new_img_value
+
+#                 image.save()
+#                 # إزالة التوجيه
+#                 # return render(request, 'aa/a.html', {'form': form})
+#             except Img_Type.DoesNotExist:
+#                 # إذا لم يتم العثور على القيمة في قاعدة البيانات
+#                 # يمكنك إضافة رسالة خطأ أو إجراء إجراء آخر هنا
+#                 # مثلاً: return HttpResponse("الفئة غير موجودة")
+#                 pass
+
+#     else:
+#         form = ImageForm()
+
+#     return render(request, 'aa/a.html', {'form': form})
+
+
+
+# def add_img(request):
+#     message = ""  # سيتم تخزين الرسالة هنا
+
+#     if request.method == 'POST':
+#         form = ImageForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             image = form.save(commit=False)
+#             # قم بإعداد مسار الصورة الكامل وحفظه في حقل "image_url"
+#             image.image_url = request.build_absolute_uri(image.image.url)
+#             # احصل على نوع الفئة المختار وقم بتعيينه لحقل "img_type_name"
+#             img_type_name = request.POST.get('img_type_name')
+#             img_type = Img_Type.objects.get(Category=img_type_name)
+#             image.img_type_name = img_type
+#             image.save()
+            
+#             # قم بتعيين الرسالة إلى "تم إضافة الصورة بنجاح"
+#             message = "تم إضافة الصورة بنجاح"
+
+#     else:
+#         form = ImageForm()
+
+#     return render(request, 'aa/a.html', {'form': form, 'message': message})

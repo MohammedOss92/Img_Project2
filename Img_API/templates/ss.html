@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>إنشاء فئة جديدة</title>
+</head>
+<body>
+    <h1>إنشاء فئة جديدة</h1>
+    <form method="post" action="{% url 'create_img_type' %}">
+        {% csrf_token %}
+        <label for="img_type_name">اسم الفئة:</label>
+        <input type="text" id="img_type_name" name="img_type_name" required>
+        <br>
+        <input type="submit" value="إنشاء فئة جديدة">
+    </form>
+    
+    {% if message %}
+    <p>{{ message }}</p>  <!-- عرض الرسالة إذا كانت موجودة -->
+    {% endif %}
+</body>
+</html>

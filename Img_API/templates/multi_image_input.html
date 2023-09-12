@@ -1,0 +1,21 @@
+{% if widget.can_add_instantly %}
+    <ul class="multi-image-upload">
+        {% for value in widget.values %}
+            <li>
+                {{ value }}
+                {% if not widget.required %}
+                    <span class="multi-image-upload-clear" title="Remove">
+                        <input type="checkbox" name="{{ widget.clear_checkbox_name }}"/>
+                        <img src="" alt="Remove"/>
+                    </span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <span class="multi-image-upload-add">
+        {{ widget.add_button_text }}
+        {{ widget.input }}
+    </span>
+{% else %}
+    {{ widget.input }}
+{% endif %}
