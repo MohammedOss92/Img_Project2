@@ -13,6 +13,7 @@ urlpatterns = [
     path('create_img_type/', views.create_img_type, name='create_img_type'),
     path('add_img_withTypeType/', views.add_img_withTypeType, name='add_img_withTypeType'),
     path('add_imgs/', views.add_imgs, name='add_imgs'),
+    path('add_photo/', views.add_photos, name='add_photo'),
     
 
    

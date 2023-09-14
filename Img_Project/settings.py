@@ -101,6 +101,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MULTIUPLOAD_FORMS = {
+    'Imgs': {
+        'upload_to': 'uploads/',  # مجلد التحميل الخاص بك
+    }
+
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

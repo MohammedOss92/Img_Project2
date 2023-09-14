@@ -58,7 +58,35 @@
     </style>
 </head>
 
-<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="{{ form.ID_Type.id_for_label }}">Select Category:</label>
+        {{ form.ID_Type }}
+    </div>
+
+    <div class="form-group m-3">
+        <label>Upload image</label>
+        <input required name="pic" type="file" multiple class="form-control-file">
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.new_img.id_for_label }}">New Image:</label>
+        {{ form.new_img }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.image_url.id_for_label }}">Image URL:</label>
+        {{ form.image_url }}
+    </div>
+
+    <input type="submit" value="Add Image">
+</form>
+
+
+
+<!-- <body>
     <h1>Add a New Image</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -66,6 +94,17 @@
 
         <input type="submit" value="Add Image">
     </form>
-</body>
+</body> -->
+
+
+<!-- <body>
+    <h1>Add a New Image</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Add Image">
+    </form>
+</body> -->
 
 </html>
